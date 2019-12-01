@@ -1,0 +1,10 @@
+.main-bg{ background: url(../common/images/index-bg.jpg) repeat-x; background-size: 100% 100%; height: 100%;}
+.card-box{ padding: 1em;}
+.card-main{ background: url(../common/images/card-bg.png) no-repeat; background-size: 100% 100%;  padding: 2em 0 6.5em 0;}
+.circle-bg{background: url(../common/images/circle-bg.png) no-repeat; background-size: 100% 100%; width: 10em; height: 10em;}
+.ReceiveCount{ color: #028BFD; font-size: 2.24em;}
+.colzs{ color: #839afd;}
+.refusebox{ padding: 1em 0;}
+.waritbox{  padding: 0 0.6em; height: 5em; border-radius: 8px; margin-top: -15px; background:#dce4fd url(../common/images/warit-bg.png) no-repeat right top;}
+.headimg{ width: 3em;}
+.headimgbox{ padding-bottom: 1em;}

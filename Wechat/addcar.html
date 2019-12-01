@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>添加车辆</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/mui.picker.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/adduser.css" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ver" id="mainpage">
+		<div class="ub first-box">
+			<div class="ub ub-f1 ub-ver first-main">
+				<div class="ub  first-item pagebox"  id="company">
+					<div class="ub ub-ac put-left marr1">
+						运输公司
+					</div>
+					<a href="#companypage" class="ub ub-f1">
+						<div class="ub ub-ac ub-f1 uinput sc-text companytxt">
+							点击选择
+						</div>
+						<div class="ub ub-ac find_rightImg">
+							<img src="common/images/icon_grayR.png" />
+						</div>
+					</a>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>驾驶员姓名
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入驾驶员姓名" class="DriverName" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>车牌号码
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车牌号码" class="PlateNo" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>车辆所有人
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车辆所有人" class="VehicleOwner" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>厂牌
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入厂牌" class="Brand" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>型号
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入型号" class="Model" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>车辆识别代码
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车辆识别代码" class="VIN" />
+					</div>
+				</div>
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>发动机号码
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入发动机号码" class="EngineNo" />
+					</div>
+				</div>
+				<div class="ub  first-item checkstart">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>注册日期
+					</div>
+					<div class="ub ub-ac ub-f1 uinput sc-text starttxt">
+						点击选择
+					</div>
+					<div class="ub ub-ac find_rightImg">
+						<img src="common/images/icon_grayR.png" />
+					</div>
+				</div>
+				<div class="ub  first-item checkend">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>发证日期
+					</div>
+					<div class="ub ub-ac ub-f1 uinput sc-text endtxt">
+						点击选择
+					</div>
+					<div class="ub ub-ac find_rightImg">
+						<img src="common/images/icon_grayR.png" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>车牌颜色
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车牌颜色" class="PlateColor" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>车身颜色
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车身颜色" class="VehicleColor" />
+					</div>
+				</div>
+
+				<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>车辆类型
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入车辆类型" class="VehicleType" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub second-box">
+			<div class="ub ub-f1 ub-ver third-main">
+				<div class="ub ub-ac header-main">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>行驶证
+					</div>
+					<div class="ub ub-ac ub-pc add-header colblue" id="drive" onclick="upimg(this)">
+						<label for="drivetxt">+</label>
+						<input id="drivetxt" type="file" name="files" accept="image/*,audio/*" style="display: none" />
+					</div>
+					<div class="ub ub-ac ub-pc imgShow">
+						<img class="driveimg" src="" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub second-box">
+			<div class="ub ub-f1 ub-ver third-main">
+				<div class="ub ub-ac header-main">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>车辆照片
+					</div>
+					<div class="ub ub-ac ub-pc add-header colblue" id="car" onclick="upimg(this)">
+						<label for="cartxt">+</label>
+						<input id="cartxt" type="file" name="files" accept="image/*,audio/*" style="display: none" />
+					</div>
+					<div class="ub ub-ac ub-pc imgShow">
+						<img class="carimg" src="" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub second-box">
+			<div class="ub ub-f1 ub-ver third-main">
+				<div class="ub ub-ac header-main">
+					<div class="ub ub-ac put-left marr1">
+						<span class="colred">* </span>运输许可证
+					</div>
+					<div class="ub ub-ac ub-pc add-header colblue" id="trans" onclick="upimg(this)">
+						<label for="transtxt">+</label>
+						<input id="transtxt" type="file" name="files" accept="image/*,audio/*" style="display: none" />
+					</div>
+					<div class="ub ub-ac ub-pc imgShow">
+						<img class="transimg" src="" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!--筛选-->
+		<div class="filter_box switch_page dhide" id="companypage">
+			<div class="ub ub-ver filter_main">
+				<div class="ub wrap-search">
+					<div class="ub ub-f1 search_box">
+						<div class="ub ub-ac ub-f1 ele_search uinput ele_put">
+							<input class="ulev-ele searchclass" id="searchclass" type="text" placeholder="公司名称或首字母" />
+						</div>
+					</div>
+				</div>
+				<div class="ub ub-ver companylist">
+					
+				</div>
+			</div>
+		</div>
+		<div class="ub btn_box">
+			<div class="ub ub-f1 ub-ac ub-pc main_btn sendbtn">
+				确认添加
+			</div>
+		</div>
+		<div class="companytemp dhide">
+			<div class="ub ub-ac company-item">
+				云南现代
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="common/js/mui.picker.min.js"></script>
+<script src="common/js/uploadImg.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		location.hash = 'mainpage';
+		window.onhashchange = function(e) {
+			var oldHash = e.oldURL.split('#')[1];
+			var newHash = e.newURL.split('#')[1];
+			if(oldHash == "mainpage") {
+				return;
+			}
+			$("#" + oldHash).addClass("pt-page-moveToTop").removeClass("pt-page-moveFromTop");
+		
+		};
+		getcompany();
+	});
+	
+	//页面切换
+	$(".pagebox").click(function() {
+		var id = $(this).attr("id");
+		id = id + "page";
+		$("#" + id).removeClass("dhide").addClass("pt-page-moveFromTop");
+		$("#" + id).removeClass("pt-page-moveToTop");
+		location.hash = id;
+	});
+	
+	//页面关闭
+	function dbgoback() {
+		$(".switch_page").addClass("pt-page-moveToTop").removeClass("pt-page-moveFromTop");
+	}
+	
+	// $(".switch_page").click(function() {
+	// 
+	// 	dbgoback();
+	// });
+	var openId = localStorage.getItem("openid");
+	var driverId = localStorage.getItem("driverId");
+	$('.checkstart').on('click', function() {
+		var Date = new mui.DtPicker({
+			type: 'date',
+			beginYear: 1950
+		});
+		Date.show(function(item) {
+			$('.starttxt').text(item);
+			$('.starttxt').css('color', '#5d5d5d');
+		})
+	})
+	$('.checkend').on('click', function() {
+		var Date = new mui.DtPicker({
+			type: 'date',
+			beginYear: 1950
+		});
+		Date.show(function(item) {
+			$('.endtxt').text(item);
+			$('.endtxt').css('color', '#5d5d5d');
+			FirstIssueDate = item;
+		})
+	})
+
+	//图片上传
+	function upimg(dom) {
+		var curid = $(dom).attr('id');
+		var id = curid + 'txt';
+		var cursrc = curid + 'img';
+		uploadImg({
+			maxNum: 1920, //压缩后照片 最大宽度/高度
+			rate: 1, //清晰度比率 0-1 越小照片大小越小但越不清晰 默认0.8
+			curid: id,
+			callback: function(baseUrl) { // 回调函数返回压缩成功后的
+				$(dom).siblings('.imgShow').find('.' + cursrc).attr("src", baseUrl);
+			}
+		});
+	}
+
+	//查询运输公司
+	var keyword = '';
+	var curname = '';
+	var curcomid = '';
+	function getcompany() {
+		var furl = '/Wechat/Api/GetCompanyJsonList/';
+		var pagination = {
+			rows: 100,
+			page: 1,
+			sidx: 'CreateDate',
+			sord: 'desc'
+		}
+		var queryJson = {
+			keyword: keyword
+		}
+		senddata = {
+			queryJson: queryJson,
+			pagination: pagination
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: senddata,
+			success: function(result) {
+				var length = 0;
+				if (result.type == 1) {
+					var datas = result.resultdata;
+					length = datas.rows.length;
+					if (length > 0) {
+						for (var i = 0; i < length; i++) {
+							addcompany(datas.rows[i]);
+						}
+
+					}
+
+				} else {
+
+				}
+
+			},
+			error: function() {
+				mui.toast("网络错误")
+			}
+		});
+	}
+
+	function addcompany(datas) {
+		var list = $(".companylist");
+		var item = $(".companytemp .company-item").clone();
+		item.text(datas.Name);
+		item.attr('Id', datas.Id);
+		item.attr('Name', datas.Name);
+		item.attr('onclick', "checkcar(this)");
+		list.append(item);
+	}
+	function checkcar(dom) {
+		curname = $(dom).attr("Name");
+		curcomid = $(dom).attr('Id');
+		$('.companytxt').text(curname);
+		$('.companytxt').css('color', '#5d5d5d');
+		dbgoback();
+	}
+	document.getElementById('searchclass').addEventListener('input', function(e) {
+		keyword = $('.searchclass').val();
+		$(".companylist").empty();
+		getcompany();
+	});
+
+	function addcar() {
+		var furl = '/Wechat/Api/AddVehicle/';
+		var DriverName = $('.DriverName').val();
+		var PlateNo = $('.PlateNo').val();
+		var PlateColor = $('.PlateColor').val();
+		var VehicleType = $('.VehicleType').val();
+		var VehicleOwner = $('.VehicleOwner').val();
+		var Brand = $('.Brand').val();
+		var Model = $('.Model').val();
+		var VIN = $('.VIN').val();
+		var EngineNo = $('.EngineNo').val();
+		var VehicleColor = $('.VehicleColor').val();
+		var VehicleLicenseImg = $('.driveimg').attr("src");
+		var VehicleImg = $('.carimg').attr('src');
+		var TransportLicenseImg = $('.transimg').attr('src');
+		var RegisterDate = $.trim($('.starttxt').text());
+		var IssueDate = $.trim($('.endtxt').text());
+		if (DriverName == '' || DriverName == null) {
+			mui.toast('请选填写姓名！');
+			return;
+		}
+		if (PlateNo == '' || PlateNo == null) {
+			mui.toast('请选填写车牌号码！');
+			return;
+		}
+		if (PlateColor == '' || PlateColor == null) {
+			mui.toast('请选填写车牌颜色！');
+			return;
+		}
+		if (VehicleType == null || VehicleType == '') {
+			mui.toast('请选填写车辆类型！');
+			return;
+		}
+		if (VehicleOwner == '' || VehicleOwner == null) {
+			mui.toast('请选填写车辆所有人！');
+			return;
+		}
+		if (Brand == null || Brand == '') {
+			mui.toast('请选填写厂牌！');
+			return;
+		}
+		if (Model == null || Model == '') {
+			mui.toast('请选填写型号！');
+			return;
+		}
+		if (VIN == null || VIN == '') {
+			mui.toast('请选填写车辆识别代码！');
+			return;
+		}
+
+		var queryJson = {
+			driverId: driverId,
+			VehicleLicenseImg: VehicleLicenseImg,
+			VehicleImg: VehicleImg,
+			TransportLicenseImg: TransportLicenseImg,
+			entity: {
+				Id:'',
+				CompanyId: curcomid,
+				CompanyName: curname,
+				DriverId: driverId,
+				DriverName: DriverName,
+				PlateNo: PlateNo,
+				PlateColor: PlateColor,
+				VehicleType: VehicleType,
+				VehicleOwner: VehicleOwner,
+				Brand: Brand,
+				Model: Model,
+				VIN: VIN,
+				RegisterDate: RegisterDate,
+				EngineNo: EngineNo,
+				IssueDate: IssueDate,
+				VehicleColor: VehicleColor,
+				FuelType: '',
+				Displacement: '',
+				TransportLicenseNo: '',
+				TransportLicenseScope: '',
+				TransportLicenseTimeBegin: '',
+				TransportLicenseTimeEnd: '',
+				MaintainStatus: '',
+				MaintainExpireDate: '',
+				YearDetectionExprieDate: '',
+				InsureExprieDate: '',
+				Comment: ''
+			}
+		}
+		//queryJson = JSON.stringify(queryJson);
+		//console.log(queryJson);
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					mui.alert(result.message, '系统提示', function() {
+						history.back(-2);
+					});
+				} else {
+					mui.toast(result.message);
+				}
+			}
+
+		});
+	}
+	$('.sendbtn').on('click', function() {
+		addcar();
+	})
+</script>

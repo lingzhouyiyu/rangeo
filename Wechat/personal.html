@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/person.css" rel="stylesheet" />
+		<script src="common/js/jquery-2.1.4.min.js"></script>
+		<script>
+			var Serverurl = "http://hx.pailetec.com/";
+			var chatState, chatAppId, chatAppSecret, chatcode, sendstate, openid;
+			(function($) {
+				$.getUrlParam = function(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					if (r != null) return unescape(r[2]);
+					return null;
+				}
+			})(jQuery);
+			chatcode = $.getUrlParam('code');
+			sendstate = $.getUrlParam("state");
+			  checkcode();
+
+			function checkcode() {
+				if (chatcode == null || chatcode == "") {
+					getOauth();
+
+				} else {
+					sendcode();
+				}
+			}
+
+			//微信授权
+			function getOauth() {
+				var furl = "/Wechat/Api/GetAuth/";
+				var ddurl = {
+					url: 'http://hx.pailetec.com/Wechat/personal.html'
+				}
+				$.ajax({
+					url: Serverurl + furl,
+					type: "get",
+					async: false,
+					data: ddurl,
+					dataType: "json",
+					success: function(result) {
+						chatState = result.resultdata.State;
+						chatAppId = result.resultdata.AppId;
+						chatAppSecret = result.resultdata.AppSecret;
+						window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + chatAppId +
+							'&redirect_uri=http://hx.pailetec.com/Wechat/personal.html&response_type=code&scope=snsapi_base&state=' +
+							chatState + '#wechat_redirect&AppSecret=' + chatAppSecret;
+
+					}
+				});
+			}
+
+			//微信授权
+			function sendcode() {
+				var furl = "/Wechat/Api/getOpenId/";
+				var queryJson = {
+					state: sendstate,
+					code: chatcode
+				}
+				$.ajax({
+					url: Serverurl + furl,
+					type: "get",
+					async: false,
+					dataType: "json",
+					data: queryJson,
+					success: function(result) {
+						var message = result.message;
+						openid = result.resultdata;
+						if (openid == null || openid == "") {
+							getOauth("index");
+						}
+
+						localStorage.setItem("openid", openid);
+
+					}
+				});
+			}
+		</script>
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ver ub-ac ub-pc person_top">
+			<div class="ub ub-ac ub-pc header_box">
+				<img class="ub ub-img logo_img" src="common/images/pheader.png" />
+			</div>
+			<div class="ub ub-f1 ub-ac namebox">
+				<div class="ub ub-f1 person_name name">驾驶员</div>
+				<div class="ub ub-ac dhide">
+					<img class="ub ub-img edit-img HeadIcon" src="common/images/edit-white.png" />
+				</div>
+			</div>
+		</div>
+		<div class="ub ub-ver person_list">
+			<div class="ub ub-ac person_item border_b">
+				<div class="ub">
+					<div class="ub person_img">
+						<img src="common/images/person01.png" />
+					</div>
+					<div class="ub person_txt">绑定驾驶员</div>
+				</div>
+				<div class="ub ub-f1 ub-pe">
+					<div class="ub ub-ac bindstatus ft085 sc-text marr06 gobind">立即绑定</div>
+					<div class="ub ub-ac bindtel ft085 sc-text marr06 dhide">已绑定</div>
+					<div class="ub ub-pe fa ft15 colc8 fa-angle-right"></div>
+				</div>
+			</div>
+			<div class="ub ub-ac person_item border_b porder_item gocar">
+				<div class="ub person_img">
+					<img src="common/images/person02.png" />
+				</div>
+				<div class="ub person_txt">车辆管理</div>
+				<div class="ub ub-f1 ub-pe fa ft15 colc8 fa-angle-right"></div>
+			</div>
+			<div class="ub ub-ac person_item border_b porder_item gobindall01">
+				<div class="ub person_img">
+					<img style="width: 1.1em;" src="common/images/person03.png" />
+				</div>
+				<div class="ub person_txt">绑定运输公司</div>
+				<div class="ub ub-f1 ub-pe fa ft15 colc8 fa-angle-right"></div>
+			</div>
+			<div class="ub ub-ac person_item border_b porder_item gobindall02">
+				<div class="ub person_img">
+					<img style="width: 1.1em;" src="common/images/person04.png" />
+				</div>
+				<div class="ub person_txt">绑定调度员</div>
+				<div class="ub ub-f1 ub-pe fa ft15 colc8 fa-angle-right"></div>
+			</div>
+			<div class="ub ub-ac person_item border_b porder_item gobindall03">
+				<div class="ub person_img">
+					<img src="common/images/person01.png" />
+				</div>
+				<div class="ub person_txt">绑定客户</div>
+				<div class="ub ub-f1 ub-pe fa ft15 colc8 fa-angle-right"></div>
+			</div>
+
+		</div>
+		<!--脚部-->
+		<div class="ub footer dhide">
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goindex()">
+				<div class="ub footer_img">
+					<img src="common/images/foot01.png" />
+					<img class="dhide" src="common/images/foot01_active.png" />
+				</div>
+				<div class="ub ft085 col999">首页</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goorder()">
+				<div class="ub footer_img">
+					<img src="common/images/foot02.png" />
+					<img class="dhide" src="common/images/foot02_active.png" />
+				</div>
+				<div class="ub ft085 col999">我的订单</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goperson()">
+				<div class="ub footer_img">
+					<img class="dhide" src="common/images/foot03.png" />
+					<img src="common/images/foot03_active.png" />
+				</div>
+				<div class="ub ft085 colblue">我要加盟</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		getDriveInfo();
+		checktel();
+	});
+	var driveid = '';
+	var openId = localStorage.getItem("openid");
+
+	function getDriveInfo() {
+		var furl = '/Wechat/Api/getDriverByOpenId/';
+		var queryJson = {
+			openId: openId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					DriverLicenseNo = result.resultdata.DriverLicenseNo;
+					driveid = result.resultdata.Id;
+					localStorage.setItem("driverId", driveid);
+					var HeadIcon = result.resultdata.HeadIcon;
+					if (HeadIcon != null && HeadIcon != '') {
+						$('.HeadIcon').attr('src', Serverurl + HeadIcon);
+					}
+					$('.name').text(result.resultdata.Name);
+				}
+			}
+
+		});
+	}
+	//验证是否绑定手机
+	function checktel() {
+		if (driveid == null || driveid == '' || driveid == 'null') {
+			$('.bindstatus').removeClass('dhide');
+		} else {
+			$('.bindtel').text('已绑定').removeClass('dhide');
+			$('.bindstatus').addClass('dhide');
+		}
+	}
+
+	//打开绑定手机
+	$(".gobind").on("click", function() {
+		mui.openWindow({
+			url: 'bindindex.html'
+		});
+	});
+	$(".bindtel").on("click", function() {
+		mui.openWindow({
+			url: 'bindindex.html'
+		});
+	});
+	$(".gocar").on("click", function() {
+		mui.openWindow({
+			url: 'carlist.html'
+		});
+	});
+	$(".gobindall01").on("click", function() {
+		mui.openWindow({
+			url: 'bindTransport.html'
+		});
+	});
+	$(".gobindall02").on("click", function() {
+		mui.openWindow({
+			url: 'bindDispatcher.html'
+		});
+	});
+	$(".gobindall03").on("click", function() {
+		mui.openWindow({
+			url: 'bindCustomer.html'
+		});
+	});
+</script>

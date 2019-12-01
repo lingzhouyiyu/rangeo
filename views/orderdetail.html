@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>我的订单</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/order.css" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ver ddbox">
+			<div class="ub ub-ver listbox">
+				<div class="ub ub-ver order-list">
+					<div class="ub ub-ver order-item">
+						<div class="ub ub-ac ub-f1 task-top">
+							<div class="ub ub-ac task-img marr06">
+								<img class="ub ub-img" src="common/images/new-bg.png" />
+							</div>
+							<div class="ub ub-f1 task-name company"></div>
+							<div class="ub ub-ac colred Status">待确认</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								取货地址
+							</div>
+							<div class="ub ub-f1 infor-right GetAddress">
+								
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								配送地址
+							</div>
+							<div class="ub ub-f1 infor-right ConsigneeAddress">
+								
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								收货人
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="marr1 ConsigneeMan"></span>
+								<span class="ConsigneeMobile"></span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								配送产品
+							</div>
+							<div class="ub ub-f1 infor-right ProductName">
+								
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								产品总重
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="Price">0</span>
+								<span>X</span>
+								<span class="marr06 ReceiveQuantity">0</span>
+								<span>(单价X数量，元/吨)</span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								送达时间
+							</div>
+							<div class="ub ub-f1 infor-right DeliveryDate">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ub ub-ver commentbox">
+				<div class="ub first-item callpricebox dhide">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>单价
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入单价" class="callprice" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>拒绝理由
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="拒绝理由~" class="comment" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac ub-f1" style="padding: 0 0.6em;">
+						<select class="ub ub-f1 carlist" style="margin-bottom: 0;">
+			
+						</select>
+						<div class="ub ub-ac find_rightImg">
+							<img src="common/images/icon_grayR.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub orders-footer">
+			<div class="ub ub-f1 ub-ac ub-pc ddcanel" onclick="canelorder()">
+				拒绝
+			</div>
+			<div class="ub ub-ac ub-pc ub-f1 ddsurer" onclick="sureorder()">
+				接单
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	var uorderid = '';
+	var OrderId = localStorage.getItem("OrderId");
+	$(function() {
+		(function($) {
+			$.getUrlParam = function(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if (r != null) return unescape(r[2]);
+				return null;
+			}
+		})(jQuery);
+		uorderid = $.getUrlParam("keyValue");
+		getorder();
+		carlist();
+	});
+
+	var driverId = localStorage.getItem("driverId");
+
+	function getorder() {
+		var furl = "/Wechat/Api/GetDriverOrderDetails/";
+		if (uorderid != null && uorderid != '') {
+			OrderId = uorderid;
+		}
+		senddata = {
+			keyValue: OrderId,
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: senddata,
+			success: function(result) {
+				var length = 0;
+				if (result.type == 1) {
+					var datas = result.resultdata;
+					var AssignSource = datas.AssignSource; //指派来源；0=平台；1=公司,公司不得拒绝
+					var AssignType = datas.AssignType; //指派类型：0=固定价格与车辆；1=固定价格招标；2=在最高价内招标；
+					var Status = datas.Status; //状态0=待处理；1=已接单;2=已拒单；3=已取消
+					if (Status === 0) {
+						Status = '待接单';
+					} else if (Status === 1) {
+						Status = '已接单';
+						// item.find(".canel-order").addClass('dhide');
+					} else if (Status === 2) {
+						Status = '已取消';
+						// item.find(".surer-order").addClass('dhide');
+						// item.find(".canel-order").addClass('dhide');
+					} else {
+						Status = '异常订单';
+					}
+					if (AssignSource === 1) {
+						$(".ddcanel").addClass('dhide');
+					}
+					if (AssignType === 2) {
+						$(".callpricebox").removeClass('dhide');
+					}
+					$(".ConsigneeMan").text(datas.ConsigneeMan);
+					$(".ConsigneeMobile").text(datas.ConsigneeMobile);
+					$(".ConsigneeAddress").text(datas.ConsigneeAddress);
+					$(".GetAddress").text(datas.GetAddress);
+					$(".ProductName").text(datas.ProductName);
+					$(".ReceiveQuantity").text(datas.ReceiveQuantity);
+					$(".Price").text(datas.Price);
+					$(".DeliveryDate").text(datas.DeliveryDate);
+					$(".company").text(datas.CompanyName);
+					$('AssignSource', datas.AssignSource);
+					$('AssignType', datas.AssignType);
+					$('OrderId', datas.Id);
+					$('Price', datas.Price);
+					$(".Status").text(Status);
+				} else {
+
+				}
+
+			},
+			error: function() {
+				mui.toast("网络错误")
+			}
+		});
+	}
+
+	var curorderid = '',
+		curprice = '';
+	var receiveStatus = 0;
+	//接单
+	function sureorder() {
+		receiveStatus = 1;
+		var btnArray = ['否', '是'];
+		mui.confirm('确定接单？', '系统提示', btnArray, function(e) {
+			if(e.index == 1) {
+				orderhandle();
+			} else {
+				return;
+			}
+		})
+	}
+	//拒单
+	function canelorder() {
+		receiveStatus = 0;
+		var btnArray = ['否', '是'];
+		mui.confirm('是否确定拒绝接单？', '系统提示', btnArray, function(e) {
+			if(e.index == 1) {
+				orderhandle();
+			} else {
+				return;
+			}
+		})
+		
+		
+	}
+
+	//查询车辆列表
+	function carlist() {
+		$(".carnolist").empty();
+		var furl = '/Wechat/Api/getVehicleList/';
+		var queryJson = {
+			driverId: driverId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					var datas = result.resultdata;
+					var length = datas.length;
+					for (var i = 0; i < length; i++) {
+						var selectitem = "<option value=" + datas[i].Id + ">" + datas[i].PlateNo + "</option>";
+						$('.carlist').append(selectitem);
+					}
+				} else {
+
+				}
+
+			}
+		});
+	}
+
+
+	//接受拒绝订单
+	function orderhandle() {
+		var furl = '/Wechat/Api/ReceiveOrder/';
+		var callprice = $('.callprice').val();
+		var comment = $('.comment').val();
+		var vehicleId = $('.carlist option:selected').val();
+		var queryJson = {
+			orderId: OrderId,
+			receiveStatus: receiveStatus,
+			vehicleId: vehicleId,
+			price: callprice,
+			comment: comment
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					refresh();
+				} else {
+					mui.toast(result.message);
+				}
+			}
+		});
+	}
+</script>

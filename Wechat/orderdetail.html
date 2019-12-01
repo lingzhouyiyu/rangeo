@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>我的订单</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/order.css?v=1.0" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ver ddbox">
+			<div class="ub ub-ver listbox">
+				<div class="ub ub-ver order-list">
+					<div class="ub ub-ver order-item">
+						<div class="ub ub-ac ub-f1 task-top">
+							<div class="ub ub-ac task-img marr06">
+								<img class="ub ub-img" src="common/images/new-bg.png" />
+							</div>
+							<div class="ub ub-f1 task-name company"></div>
+							<div class="ub ub-ac colred Status">待确认</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								取货地址
+							</div>
+							<div class="ub ub-f1 infor-right GetAddress">
+
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								配送地址
+							</div>
+							<div class="ub ub-f1 infor-right ConsigneeAddress">
+
+							</div>
+						</div>
+						<div class="ub infor-item userinfor dhide">
+							<div class="ub infor-left sc-text">
+								收货人
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="marr1 ConsigneeMan"></span>
+								<span class="ConsigneeMobile"></span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								配送产品
+							</div>
+							<div class="ub ub-f1 infor-right ProductName">
+
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								产品总重
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="Price">0</span>
+								<span>X</span>
+								<span class="marr06 ReceiveQuantity">0</span>
+								<span>(单价X数量，元/吨)</span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								招标类型
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="AssingType">无</span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								招标出价
+							</div>
+							<div class="ub ub-f1 infor-right">
+								<span class="AssingPrice">0</span>
+							</div>
+						</div>
+						<div class="ub infor-item">
+							<div class="ub infor-left sc-text">
+								送达时间
+							</div>
+							<div class="ub ub-f1 infor-right DeliveryDate">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ub ub-ver commentbox">
+				<div class="ub first-item callpricebox dhide">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>单价
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="请输入单价" class="callprice" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						<span class="colred">* </span>拒绝理由
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input type="text" placeholder="拒绝理由~" class="comment" />
+					</div>
+				</div>
+				<div class="ub first-item">
+					<div class="ub ub-ac ub-f1" style="padding: 0 0.6em;">
+						<select class="ub ub-f1 carlist" style="margin-bottom: 0;">
+
+						</select>
+						<div class="ub ub-ac find_rightImg">
+							<img src="common/images/icon_grayR.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--订单送达弹窗-->
+		<div class="ub ub ub-ver switch_page delivemask dhide">
+			<div class="content_main">
+				<div class="title">
+					上传图片
+				</div>
+				<div class="imglistbox">
+					<div class="clonebox">
+						<i class="close-icon"></i>
+						<img src="" alt="" class="image-path">
+						<img src="common/images/add-img.png" alt="" class="image-icon">
+						<input class="upload-file" name="img1[]" type="file"capture="camera" accept="image/*">
+
+					</div>
+					<div class="upload-img" id="js-upload-img">
+						<div class="img-box imagshow">
+							<i class="close-icon"></i>
+							<img src="" alt="" class="image-path">
+							<img src="common/images/add-img.png" alt="" class="image-icon">
+							<input class="upload-file" name="img[]" type="file" capture="camera" accept="image/*">
+
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="ub ub-ac ub-pc ub-f1 addsure_box">
+				<div class="ub ub-ac ub-pc ub-f1 canel-delived">
+				取消
+				</div>
+				<div class="ub ub-f1 ub-ac ub-pc adsure_btn">
+					<div class="ub ub-ac ub-pc">确定</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub orders-footer dbfooter01">
+			<div class="ub ub-f1 ub-ac ub-pc ddcanel" onclick="canelorder()">
+				拒绝
+			</div>
+			<div class="ub ub-ac ub-pc ub-f1 ddsurer" onclick="sureorder()">
+				接单
+			</div>
+		</div>
+		<div class="ub orders-footer dbfooter02 dhide">
+			<div class="ub ub-ac ub-pc ub-f1 delived" onclick="delived()">
+				确认送达
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	var uorderid = '';
+	var OrderId = localStorage.getItem("OrderId");
+	$(function() {
+		(function($) {
+			$.getUrlParam = function(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+		})(jQuery);
+		uorderid = $.getUrlParam("keyValue");
+		getorder();
+		carlist();
+	});
+
+	var driverId = localStorage.getItem("driverId");
+	var AssignType = 0;
+	function getorder() {
+		var furl = "/Wechat/Api/GetDriverOrderDetails/";
+		if(uorderid != null && uorderid != '') {
+			OrderId = uorderid;
+		}
+		senddata = {
+			keyValue: OrderId,
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: senddata,
+			success: function(result) {
+				var length = 0;
+				if(result.type == 1) {
+					var datas = result.resultdata;
+					var AssignSource = datas.AssignSource; //指派来源；0=平台；1=公司,公司不得拒绝
+					AssignType = datas.AssingType; //指派类型：0=固定价格与车辆；1=固定价格招标；2=在最高价内招标；
+					var AssingPrice = datas.AssingPrice;
+					var AssignTypetxt = '无';
+					var Status = datas.Status; //状态0=待处理；1=已接单;2=已拒单；3=已取消
+					
+					if(Status === 0) {
+						Status = '待接单';
+					} else if(Status === 1) {
+						Status = '已接单';
+						// item.find(".canel-order").addClass('dhide');
+					} else if(Status === 2) {
+						Status = '已取消';
+						// item.find(".surer-order").addClass('dhide');
+						// item.find(".canel-order").addClass('dhide');
+					} else if(Status === 3) {
+						Status = '已中标';
+						$(".dbfooter01").addClass('dhide');
+						$(".dbfooter02").removeClass('dhide');
+						$(".userinfor").removeClass('dhide');
+					} else if(Status === 4) {
+						Status = '已废标';
+					} else if(Status === 5) {
+						Status = '已送达';
+						$(".dbfooter01").addClass('dhide');
+						$(".dbfooter02").addClass('dhide');
+						$(".userinfor").removeClass('dhide');
+						
+					}  else if(Status === 6) {
+						Status = '已完成';
+						$(".dbfooter01").addClass('dhide');
+						$(".dbfooter02").addClass('dhide');
+						$(".userinfor").removeClass('dhide');
+						
+					} else {
+						Status = '异常订单';
+					}
+					if(AssignSource === 1) {
+						$(".ddcanel").addClass('dhide');
+					}
+					if (AssignType == 0) {
+						AssignTypetxt = '定价定车';
+					}
+					if (AssignType == 1) {
+						AssignTypetxt = '定价招标';
+					}
+					if (AssignType == 2) {
+						AssignTypetxt = '询价招标';
+						$(".callpricebox").removeClass('dhide');
+					}
+					$(".AssingType").text(AssignTypetxt);
+					$(".AssingPrice").text(AssingPrice);
+					$(".ConsigneeMan").text(datas.ConsigneeMan);
+					$(".ConsigneeMobile").text(datas.ConsigneeMobile);
+					$(".ConsigneeAddress").text(datas.ConsigneeAddress);
+					$(".GetAddress").text(datas.GetAddress);
+					$(".ProductName").text(datas.ProductName);
+					$(".ReceiveQuantity").text(datas.ReceiveQuantity);
+					$(".Price").text(datas.Price);
+					$(".DeliveryDate").text(datas.DeliveryDate);
+					$(".company").text(datas.CompanyName);
+					$('AssignSource', datas.AssignSource);
+					$('AssignType', datas.AssignType);
+					$('OrderId', datas.Id);
+					$('Price', datas.Price);
+					$(".Status").text(Status);
+				} else {
+
+				}
+
+			},
+			error: function() {
+				mui.toast("网络错误")
+			}
+		});
+	}
+
+	var curorderid = '',
+		curprice = '';
+	var receiveStatus = 0;
+	//接单
+	function sureorder() {
+		receiveStatus = 1;
+		var btnArray = ['否', '是'];
+		mui.confirm('确定接单？', '系统提示', btnArray, function(e) {
+			if(e.index == 1) {
+				orderhandle();
+			} else {
+				return;
+			}
+		})
+	}
+	//拒单
+	function canelorder() {
+		receiveStatus = 0;
+		var btnArray = ['否', '是'];
+		mui.confirm('是否确定拒绝接单？', '系统提示', btnArray, function(e) {
+			if(e.index == 1) {
+				orderhandle();
+			} else {
+				return;
+			}
+		})
+
+	}
+
+	//查询车辆列表
+	function carlist() {
+		$(".carnolist").empty();
+		var furl = '/Wechat/Api/getVehicleList/';
+		var queryJson = {
+			driverId: driverId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if(result.type == 1) {
+					var datas = result.resultdata;
+					var length = datas.length;
+					for(var i = 0; i < length; i++) {
+						var selectitem = "<option value=" + datas[i].Id + ">" + datas[i].PlateNo + "</option>";
+						$('.carlist').append(selectitem);
+					}
+				} else {
+
+				}
+
+			}
+		});
+	}
+
+	//接受拒绝订单
+	function orderhandle() {
+		var furl = '/Wechat/Api/ReceiveOrder/';
+		var callprice = $('.callprice').val();
+		var comment = $('.comment').val();
+		var vehicleId = $('.carlist option:selected').val();
+		if (AssignType === 2 && (callprice == null || callprice == '' || callprice == '0')) {
+			mui.toast('请输入投标价格！');
+			return;
+		}
+		var queryJson = {
+			orderId: OrderId,
+			receiveStatus: receiveStatus,
+			vehicleId: vehicleId,
+			price: callprice,
+			comment: comment
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if(result.type == 1) {
+					refresh();
+				} else {
+					mui.toast(result.message);
+				}
+			}
+		});
+	}
+	
+	//图片上传
+	$('.upload-file').on('change', function(event) {
+		var file = event.target.files[0];
+		var $that = $(this);
+		if(window.FileReader) {
+			var reader = new FileReader();
+			reader.onloadend = function(e) {
+				var imgFile = e.target.result;
+				if (file.size / 1024 > 1024 * 1.2) {
+					let image = new Image(); //新建一个img标签（还没嵌入DOM节点)
+					image.src = e.target.result;
+					image.onload = function() {
+						let canvas = document.createElement('canvas'),
+							context = canvas.getContext('2d'),
+							imageWidth = image.width / 2, //压缩后图片的大小
+							imageHeight = image.height / 2,
+							data = ''
+						canvas.width = imageWidth
+						canvas.height = imageHeight
+				
+						context.drawImage(image, 0, 0, imageWidth, imageHeight)
+						data = canvas.toDataURL('image/jpeg')
+						imgFile = data
+					}
+				}
+				$that.siblings('.image-icon').hide();
+				$that.siblings('.image-path').show();
+				$that.siblings('.close-icon').show();
+				$that.siblings('.image-path').attr({
+					'src': imgFile
+				});
+				if($('#js-upload-img .img-box').length < 10) {
+					$('#js-upload-img').append($('.clonebox').clone(true).addClass('img-box').removeClass('clonebox').show());
+				}
+
+			};
+			//监听文件读取结束后事件
+			reader.readAsDataURL(file);
+		}
+		$(this).val(''); //必须，确保上传相同的文件时能触发
+
+	})
+	$('.close-icon').click(function(e) {
+		$(this).parent('.img-box').remove();
+	});
+
+	//订单送达
+	function delived() {
+		$('.delivemask').removeClass('dhide');
+	}
+	
+	$('.canel-delived').on('click',function(){
+		$('.delivemask').addClass('dhide')
+	})
+	//确认送达
+	$('.adsure_btn').on('click',function(){
+		sendDelive();
+	});
+	function eachlist(doms) {
+		var imgarry = [];
+		if ($(doms).length > 0) {
+			doms.each(function(i, item) {
+				var imgsrc = $(item).find('.image-path').attr("src");
+				imgarry.push(imgsrc);
+			});
+		}
+		return imgarry;
+	}
+	function sendDelive(){
+		var furl = '/Wechat/Api/OrderDelivery/';
+		var list = $(".upload-img .imagshow");
+		var imgs = eachlist(list);
+		var queryJson = {
+			keyValue: OrderId,
+			Longitude: 0.0,
+			Latitude: 0.0,
+			Imgs: imgs,
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if(result.type == 1) {
+					mui.alert(result.message, '系统提示', function() {
+						$('.delivemask').addClass('dhide');
+						refresh();
+						
+					});
+					
+				} else {
+					mui.toast(result.message);
+				}
+			}
+		});
+	}
+</script>

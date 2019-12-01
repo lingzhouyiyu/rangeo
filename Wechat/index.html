@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>物流平台首页</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/index.css" rel="stylesheet" />
+		<script src="common/js/jquery-2.1.4.min.js"></script>
+		<script>
+			var Serverurl = "http://hx.pailetec.com/";
+			var chatState, chatAppId, chatAppSecret, chatcode, sendstate, openid;
+			(function($) {
+				$.getUrlParam = function(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+					var r = window.location.search.substr(1).match(reg);
+					if (r != null) return unescape(r[2]);
+					return null;
+				}
+			})(jQuery);
+			chatcode = $.getUrlParam('code');
+			sendstate = $.getUrlParam("state");
+			 checkcode();
+			function checkcode() {
+				if (chatcode == null || chatcode == "") {
+					getOauth();
+
+				} else {
+					sendcode();
+				}
+			}
+
+			//微信授权
+			function getOauth() {
+				var furl = "/Wechat/Api/GetAuth/";
+				var ddurl = {
+					url:'http://hx.pailetec.com/Wechat/index.html'
+				}
+				$.ajax({
+					url: Serverurl + furl,
+					type: "get",
+					async: false,
+					data: ddurl,
+					dataType: "json",
+					success: function(result) {
+						chatState = result.resultdata.State;
+						chatAppId = result.resultdata.AppId;
+						chatAppSecret = result.resultdata.AppSecret;
+						window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + chatAppId +
+							'&redirect_uri=http://hx.pailetec.com/Wechat/index.html&response_type=code&scope=snsapi_base&state=' +
+							chatState + '#wechat_redirect&AppSecret=' + chatAppSecret;
+
+					}
+				});
+			}
+
+			//微信授权
+			function sendcode() {
+				var furl = "/Wechat/Api/getOpenId/";
+				var queryJson = {
+					state: sendstate,
+					code: chatcode
+				}
+				$.ajax({
+					url: Serverurl + furl,
+					type: "get",
+					async: false,
+					dataType: "json",
+					data: queryJson,
+					success: function(result) {
+						var message = result.message;
+						openid = result.resultdata;
+						if (openid == null || openid == "") {
+							getOauth("index");
+						}
+
+						localStorage.setItem("openid", openid);
+
+					}
+				});
+			}
+		</script>
+	</head>
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-f1 ub-ver main-bg">
+			<div class="ub ub-ver card-box">
+				<div class="ub ub-ac colfff headimgbox">
+					<div class="ub ub-ac marr06">
+						<img class="ub ub-img headimg" src="common/images/headimg02.png" />
+					</div>
+					<div class="ub ub-ac">
+						<span class="Name"></span><span>司机</span>
+					</div>
+				</div>
+				<div class="ub  ub-f1 ub-ver card-main">
+					<div class="ub ub-ac ub-pc">
+						<div class="ub ub-ac ub-ver ub-pc circle-bg">
+							<div class="ub ReceiveCount">0</div>
+							<div class="ub ub-ac colzs">接单总数</div>
+						</div>
+					</div>
+					<div class="ub refusebox">
+						<div class="ub ub-ac ub-ver ub-pc ub-f1 ub-fh">
+							<div class="ub colblue ft25 RefuseCount">0</div>
+							<div class="ub ub-ac colzs">拒单数量</div>
+						</div>
+						<div class="ub ub-ac ub-ver ub-pc ub-f1 ub-fh">
+							<div class="ub colblue ft25 CancelCount">0</div>
+							<div class="ub ub-ac colzs">取消单数</div>
+						</div>
+					</div>
+				</div>
+				<div class="ub ub-f1 ub-ver ub-pc  ub-ac waritbox">
+					<div class="ub">
+						<span class="marr1 colzs">待处理订单</span>
+						<span class="marr1 colred ft15 WaitCount">0</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--脚部-->
+		<div class="ub footer dhide">
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goindex()">
+				<div class="ub footer_img">
+					<img class="dhide" src="common/images/foot01.png" />
+					<img src="common/images/foot01_active.png" />
+				</div>
+				<div class="ub ft085 colblue">首页</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goorder()">
+				<div class="ub footer_img">
+					<img src="common/images/foot02.png" />
+					<img class="dhide" src="common/images/foot02_active.png" />
+				</div>
+				<div class="ub ft085 col999">我的订单</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goperson()">
+				<div class="ub footer_img">
+					<img src="common/images/foot03.png" />
+					<img class="dhide" src="common/images/foot03_active.png" />
+				</div>
+				<div class="ub ft085 col999">我要加盟</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		getDriveInfo();
+		 getstatic();
+	});
+	var driverId = '';
+	var DriverLicenseNo = '';
+	var openid = localStorage.getItem("openid");
+	//localStorage.setItem("driverId", '7724b395-94ed-4968-8ccb-49e8995dd67c');
+	function getDriveInfo() {
+		var furl = '/Wechat/Api/getDriverByOpenId/';
+		var queryJson = {
+			openId: openid
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					DriverLicenseNo = result.resultdata.DriverLicenseNo;
+					driverId = result.resultdata.Id;
+					$('.Name').text(result.resultdata.Name);
+					localStorage.setItem("driverId", driverId);
+				}
+			}
+
+		});
+	}
+	function getstatic() {
+		var furl = '/Wechat/Api/getReceiveOrderStatistic/';
+		var queryJson = {
+			driverId: driverId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					$('.CancelCount').text(result.resultdata[0].CancelCount);
+					$('.WaitCount').text(result.resultdata[0].WaitCount);
+					$('.ReceiveCount').text(result.resultdata[0].ReceiveCount);
+					$('.RefuseCount').text(result.resultdata[0].RefuseCount);
+				}
+			}
+	
+		});
+	}
+	$('.waritbox').on("click", function() {
+		mui.openWindow({
+			url: 'orderlist.html'
+		});
+	})
+</script>

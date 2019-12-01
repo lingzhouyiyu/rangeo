@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>我的订单</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/order.css" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="ub ub-ver listbox">
+					<div class="ub ub-ver order-list">
+
+					</div>
+					<div class="ub ub-ac ub-pc sc-text footer_line " style="padding: 0.8em 0;">
+						<span class="ub warmline"></span>
+						<span class="ub ft09">暂无更多订单信息</span>
+						<span class="ub warmline"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--脚部-->
+		<div class="ub footer">
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goindex()">
+				<div class="ub footer_img">
+					<img src="common/images/foot01.png" />
+					<img class="dhide" src="common/images/foot01_active.png" />
+				</div>
+				<div class="ub ft085 col999">首页</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goorder()">
+				<div class="ub footer_img">
+					<img class="dhide" src="common/images/foot02.png" />
+					<img src="common/images/foot02_active.png" />
+				</div>
+				<div class="ub ft085 colblue">我的订单</div>
+			</div>
+			<div class="ub ub-ver ub-ac ub-pc ub-f1 ub-fh" onclick="goperson()">
+				<div class="ub footer_img">
+					<img src="common/images/foot03.png" />
+					<img class="dhide" src="common/images/foot03_active.png" />
+				</div>
+				<div class="ub ft085 col999">我要加盟</div>
+			</div>
+		</div>
+		<!--订单模板-->
+		<div class="order-temp dhide">
+			<div class="ub ub-ver order-item">
+				<div class="ub ub-ac ub-f1 task-top">
+					<div class="ub ub-ac task-img marr06">
+						<img class="ub ub-img" src="common/images/new-bg.png" />
+					</div>
+					<div class="ub ub-f1 task-name company"></div>
+					<div class="ub ub-ac colred Status">待确认</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						取货地址
+					</div>
+					<div class="ub ub-f1 infor-right GetAddress">
+						取货地址取货地址
+					</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						配送地址
+					</div>
+					<div class="ub ub-f1 infor-right ConsigneeAddress">
+						配送地址配送地址
+					</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						收货人
+					</div>
+					<div class="ub ub-f1 infor-right">
+						<span class="marr1 ConsigneeMan">张施耐德</span>
+						<span class="ConsigneeMobile">18788888888</span>
+					</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						配送产品
+					</div>
+					<div class="ub ub-f1 infor-right ProductName">
+						化肥
+					</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						产品总重
+					</div>
+					<div class="ub ub-f1 infor-right">
+						<span class="Price">0</span>
+						<span>X</span>
+						<span class="marr06 ReceiveQuantity">0</span>
+						<span>(单价X数量，元/吨)</span>
+					</div>
+				</div>
+				<div class="ub infor-item">
+					<div class="ub infor-left sc-text">
+						送达时间
+					</div>
+					<div class="ub ub-f1 infor-right DeliveryDate">
+						2019-09-09 13:30
+					</div>
+				</div>
+				<div class="ub ub-f1 ub-pe btns-box">
+					<div class="ub ub-ac ub-pc canel-order">
+						拒绝
+					</div>
+					<div class="ub ub-ac ub-pc surer-order">
+						接单
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--车牌模板-->
+		<div class="carnotemp dhide">
+			<div class="ub carno-item">
+				<div class="radiobox colhgreen umar-r">
+					<input type="radio" name="radio" value="" class="uabs ub-con checkticket" rel="0">
+				</div>
+				<div class="ub ub-ac PlateNo">云123</div>
+			</div>
+		</div>
+
+		<!--拒绝弹窗-->
+		<div class="ub ub-ac ub-pc outdialog_box canelmask dhide">
+			<div class="ub ub-ver outdialog_main">
+				<div class="ub ub-ac ub-pc outtitle">
+					请选择车牌号
+				</div>
+				<div class="ub ub-ver ub-f1 outtxt">
+					<div class="ub ub-f1 uinput upb" style="padding-right: 0.5em; padding-left: 0.5em;">
+						<input type="text" value="" placeholder="请填写拒绝理由" class="comment" />
+					</div>
+				</div>
+				<div class="ub ub-f1 out_btnbox">
+					<div class="ub ub-ac ub-pc ub-f1 ub-fh false_btn canel_false">
+						否
+					</div>
+					<a href="#" class="ub ub-ac ub-pc ub-f1 ub-fh bc-text true_btn canel_true">
+						是
+					</a>
+				</div>
+			</div>
+		</div>
+		<!--接单弹窗-->
+		<div class="ub ub-ac ub-pc outdialog_box suremask dhide">
+			<div class="ub ub-ver outdialog_main">
+				<div class="ub ub-ac ub-pc outtitle">
+					请选择车牌号
+				</div>
+				<div class="ub ub-ver ub-f1 outtxt">
+					<div class="ub ub-ver ub-f1 ub-pc ub-ac carnolist">
+
+					</div>
+					<div class="ub ub-f1 uinput upb callbox dhide" style="padding-right: 0.5em; padding-left: 0.5em;">
+						<input type="number" value="" placeholder="请填写招标单价" class="callprice" />
+					</div>
+				</div>
+				<div class="ub ub-f1 out_btnbox">
+					<div class="ub ub-ac ub-pc ub-f1 ub-fh false_btn sure_false">
+						否
+					</div>
+					<a href="#" class="ub ub-ac ub-pc ub-f1 ub-fh bc-text true_btn sure_true">
+						是
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		getorder(isup);
+		carlist();
+	});
+
+	var driverId = localStorage.getItem("driverId");
+
+	//获取订单列表
+	var curpage = 0;
+	var isup = 0;
+	var isover = false;
+	mui.init({
+		pullRefresh: {
+			container: '#pullrefresh',
+			down: {
+				callback: pulldownRefresh
+			},
+			up: {
+				contentrefresh: '正在加载...',
+				contentnomore: '暂无更多信息',
+				callback: pullupRefresh
+			}
+		}
+	});
+
+	function pullupRefresh() {
+		setTimeout(function() {
+			isup = 1;
+			getorder(isup);
+			mui('#pullrefresh').pullRefresh().endPullupToRefresh(isover);
+		}, 500);
+	}
+
+	function pulldownRefresh() {
+		setTimeout(function() {
+			$(".order-list").empty();
+			isup = 0;
+			getorder(isup);
+			mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+			mui('#pullrefresh').pullRefresh().refresh(true);
+		}, 500);
+
+	}
+
+	function getorder(isup) {
+		var furl = "/Wechat/Api/getMyOrderList/";
+		if (isup == 1) {
+			curpage++;
+		} else {
+			curpage = 1;
+		}
+		var pagination = {
+			rows: 15,
+			page: curpage,
+			sidx: 'AssignDate',
+			sord: 'desc'
+		}
+		senddata = {
+			driverId: driverId,
+			pagination: pagination
+		}
+
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: senddata,
+			success: function(result) {
+				var length = 0;
+				if (result.type == 1) {
+					var datas = result.resultdata;
+					length = datas.rows.length;
+					if (length > 0) {
+						for (var i = 0; i < length; i++) {
+							addorder(datas.rows[i]);
+						}
+
+					}
+
+				} else {
+					isover = true;
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+				}
+
+			},
+			error: function() {
+				mui.toast("网络错误")
+			}
+		});
+	}
+
+	function addorder(datas) {
+		var list = $(".order-list");
+		var item = $(".order-temp .order-item").clone();
+		var AssignSource = datas.AssignSource; //指派来源；0=平台；1=公司,公司不得拒绝
+
+		var AssignType = datas.AssignType; //指派类型：0=固定价格与车辆；1=固定价格招标；2=在最高价内招标；
+
+		var Status = datas.Status; //状态0=待处理；1=已接单;2=已拒单；3=已取消
+		if (Status === 0) {
+			Status = '待接单';
+		} else if (Status === 1) {
+			Status = '已接单';
+			// item.find(".canel-order").addClass('dhide');
+		} else if (Status === 2) {
+			Status = '已取消';
+			// item.find(".surer-order").addClass('dhide');
+			// item.find(".canel-order").addClass('dhide');
+		} else {
+			Status = '异常订单';
+		}
+		if (AssignSource === 1) {
+			item.find(".canel-order").addClass('dhide');
+		}
+		item.find(".ConsigneeMan").text(datas.ConsigneeMan);
+		item.find(".ConsigneeMobile").text(datas.ConsigneeMobile);
+		item.find(".ConsigneeAddress").text(datas.ConsigneeAddress);
+		item.find(".GetAddress").text(datas.GetAddress);
+		item.find(".ProductName").text(datas.ProductName);
+		item.find(".ReceiveQuantity").text(datas.ReceiveQuantity);
+		item.find(".Price").text(datas.Price);
+		item.find(".DeliveryDate").text(datas.DeliveryDate);
+		item.find(".company").text(datas.CompanyName);
+		item.attr('AssignSource', datas.AssignSource);
+		item.attr('AssignType', datas.AssignType);
+		item.attr('OrderId', datas.Id);
+		item.attr('Price', datas.Price);
+		item.find(".Status").text(Status);
+		item.find(".surer-order").attr('onclick', "sureorder(this)");
+		item.find(".canel-order").attr('onclick', "canelorder(this)");
+
+		list.append(item);
+	}
+
+	var curorderid = '',
+		curprice = '',
+		vehicleId = '';
+	var receiveStatus = 0;
+	//接单
+	function sureorder(dom) {
+
+		var iscall = $(dom).parent().parent().attr('AssignType');
+		curorderid = $(dom).parent().parent().attr('OrderId');
+		$('.suremask').removeClass('dhide');
+		if (iscall === 2) {
+			$('.suremask').find('.callbox').removeClass('dhide');
+		}
+		receiveStatus = 1;
+	}
+	//拒单
+	function canelorder(dom) {
+
+		curorderid = $(dom).parent().parent().attr('OrderId');
+		$('.canelmask').removeClass('dhide');
+		receiveStatus = 0;
+	}
+	$('.canel_false').on('click', function() {
+		$('.canelmask').addClass('dhide');
+	});
+	$('.canel_true').on('click', function() {
+		orderhandle();
+		$('.canelmask').addClass('dhide');
+	});
+	$('.sure_false').on('click', function() {
+		$('.suremask').addClass('dhide');
+	});
+	$('.sure_true').on('click', function() {
+		orderhandle();
+		$('.suremask').addClass('dhide');
+	});
+
+	//查询车辆列表
+	function carlist() {
+		$(".carnolist").empty();
+		var furl = '/Wechat/Api/getVehicleList/';
+		var queryJson = {
+			driverId: driverId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					var datas = result.resultdata;
+					var length = datas.length;
+					for (var i = 0; i < length; i++) {
+						if (i == 0) {
+							$('input:radio:first').attr('checked', 'checked');
+							$('input:radio:first').attr('checked', 'true');
+						}
+						addcar(datas[i]);
+					}
+				} else {
+
+				}
+
+			}
+		});
+	}
+
+	function addcar(datas) {
+		var list = $(".carnolist");
+		var item = $(".carnotemp .carno-item").clone();
+		item.find(".PlateNo").text(datas.PlateNo);
+		item.find(".checkticket").val(datas.PlateNo);
+		item.attr('PlateNo', datas.PlateNo);
+		//item.attr('onclick', "checkuse(this)");
+		list.append(item);
+	}
+	//接受拒绝订单
+	function orderhandle() {
+		var furl = '/Wechat/Api/ReceiveOrder/';
+		var callprice = $('.callprice').val();
+		var comment = $('.comment').val();
+		vehicleId = $('input:radio:checked').val();
+		var queryJson = {
+			orderId: curorderid,
+			receiveStatus: receiveStatus,
+			vehicleId: vehicleId,
+			price: callprice,
+			comment: comment
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					refresh();
+				} else {
+					mui.toast(result.message);
+				}
+			}
+		});
+	}
+
+	mui("#pullrefresh").on('tap', '.canel-order', function(event) {
+		this.click();
+	});
+	mui("#pullrefresh").on('tap', '.surer-order', function(event) {
+		this.click();
+	});
+	mui("#pullrefresh").on('tap', '.canel_false', function(event) {
+		this.click();
+	});
+	mui("#pullrefresh").on('tap', '.canel_true', function(event) {
+		this.click();
+	});
+	mui("#pullrefresh").on('tap', 'sure_false', function(event) {
+		this.click();
+	});
+	mui("#pullrefresh").on('tap', '.sure_true', function(event) {
+		this.click();
+	});
+</script>

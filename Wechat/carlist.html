@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>车辆管理</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/addr.css" rel="stylesheet" />
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ver addr-list">
+
+		</div>
+		<div class="ub ub-ac ub-pc sc-text footer_line" style="padding-bottom: 0.6em;">
+			<span class="ub warmline"></span>
+			<span class="ub ft09">暂无更多车辆信息</span>
+			<span class="ub warmline"></span>
+		</div>
+		<div class="ub ub-ac ub-pc goaddr-add">
+			<div class="ub ub-ac ub-pc">添加新车辆</div>
+		</div>
+
+		<div class="addrtemp dhide">
+			<div class="ub ub-ac hisaddr-item">
+				<div class="ub ub-ver ub-f1">
+					<div class="ub  umar-b">
+						<div class="ub ub-ac username marr1 Brand">
+
+						</div>
+						<div class="ub ub-ac usertel VehicleColor">
+
+						</div>
+					</div>
+					<div class="ub ub-ac useraddr sc-text PlateNo">
+
+					</div>
+				</div>
+				<div class="ub ub-ac addr-editbtn">
+					<div class="ub ub-ac">
+						<img class="ub addr-ctrlimg" src="common/images/addr-edit.png" />
+
+					</div>
+					<div class="ub">编辑</div>
+				</div>
+
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		carlist();
+	});
+	var driverId = localStorage.getItem("driverId");
+	//查询车辆列表
+	function carlist() {
+		var furl = '/Wechat/Api/getVehicleList/';
+		var queryJson = {
+			driverId: driverId
+		}
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if(result.type == 1) {
+					var datas = result.resultdata;
+					var length = datas.length;
+					for(var i = 0; i < length; i++) {
+						addcar(datas[i]);
+					}
+				} else {
+
+				}
+
+			}
+		});
+	}
+
+	function addcar(datas) {
+		var list = $(".addr-list");
+		var editdata = JSON.stringify(datas);
+		var item = $(".addrtemp .hisaddr-item").clone();
+		item.attr('datas', editdata);
+		item.find(".Brand").text(datas.Brand);
+		item.find(".PlateNo").text(datas.PlateNo);
+		item.find(".VehicleColor").text(datas.VehicleColor);
+		item.attr('Id', datas.Id);
+		item.find(".addr-editbtn").attr('onclick', "editaddr(this)");
+		//item.find(".addr-deletebtn").attr('onclick', "deleteaddr(this)");
+		list.append(item);
+	}
+
+	//编辑地址
+	function editaddr(dom) {
+		var moddatas = $(dom).parent().attr('datas');
+		localStorage.setItem("moddatas", moddatas);
+		mui.openWindow({
+			url: 'editcar.html',
+			id: 'editcar',
+		});
+	}
+
+	//打开新增地址
+	$('.goaddr-add').on('click', function() {
+		mui.openWindow({
+			url: 'addcar.html'
+		});
+	})
+</script>

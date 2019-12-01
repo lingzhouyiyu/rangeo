@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>绑定驾驶员</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/adduser.css" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ac bind_warn">
+			<div class="ub ub-ac bindwarn_img">
+				<img class="ub ub-img umar-r" src="common/images/warn_img.png" />
+			</div>
+			<div class="ub sc-text ft085">请先绑定驾驶员！</div>
+		</div>
+		<div class="ub first-box">
+			<div class="ub ub-f1 ub-ver first-main">
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left">
+						驾驶证号
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input class="realName" type="tel" placeholder="驾驶证号~" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ub btn_box">
+			<div class="ub ub-f1 ub-ac ub-pc main_btn sendbtn">
+				确认绑定
+			</div>
+		</div>
+
+		<div class="ub ub-ac ub-pc sc-text goadd">
+			还没有驾驶员信息，<span class="colblue">点击添加</span>
+		</div>
+
+
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+		sessionStorage.setItem("adduse-refresh", true);
+	});
+
+	var openId = localStorage.getItem("openid");
+	var unionId = localStorage.getItem("unionId");
+	//验证信息
+	function binddriver() {
+		var furl = '/Wechat/Api/BindingDriver/';
+		var carid = $('.realName').val();
+		if (carid === null || carid === '') {
+			mui.toast('请填写驾驶证号！');
+			return;
+		}
+		var queryJson = {
+			openId: openId,
+			driverLicenseNo: carid
+		}
+		//console.log(queryJson);
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					mui.alert(result.message, '系统提示', function() {
+						history.back(-1);
+					});
+				} else {
+					mui.toast(result.message);
+				}
+			}
+
+		});
+	}
+	$('.sendbtn').on('click', function() {
+		binddriver();
+	})
+	//打开绑定手机
+	$(".goadd").on("click", function() {
+		mui.openWindow({
+			url: 'driver.html'
+		});
+	})
+</script>

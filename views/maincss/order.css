@@ -1,0 +1,37 @@
+.order-list{ padding: 0.6em 0; }
+.order-item{ background: #fff; margin: 0 0.6em 0.5em 0.6em; border-radius: 5px; padding: 0.6em;}
+.task-top{ border-bottom: 1px solid #e1e1e1; padding: 0.2em 0 0.6em 0; margin-bottom: 1em; }
+.task-img img{ width: 1.6em;}
+.task-center{ padding: 0.6em; }
+.infor-left{ width: 5em;}
+.infor-item{ margin-bottom: 0.5em;}
+.btns-box{ padding-top: 0.4em;}
+.canel-order{ border: 1px solid #999; color: #999; border-radius: 5px; height: 2em; width: 4.6em; font-size: 0.9em; margin-right: 1.5em;}
+.surer-order{ border: 1px solid #0cabfe; color: #0cabfe; border-radius: 5px; height: 2em; width: 4.6em; font-size: 0.9em;}
+
+.outdialog_box {
+    position: fixed;
+    z-index: 998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.4);
+    }
+    .outdialog_main{ background: #fff; width: 17.6em; border-radius: 8px;}
+    .outtitle{ font-size: 1.125em; margin-top: 15px;}
+.outtxt{ padding: 1.2em 1em; font-size: 1em; text-align: center;}
+.out_btnbox{ border-top: 1px solid #E1E1E1; height: 2.8em;}
+.false_btn{border-right: 1px solid #E1E1E1;}
+.true_btn{ color: #5D5D5D;}
+.upb{ border: 1px solid #E1E1E1;}
+.carno-item{ margin-bottom: 0.5em;}
+
+.ddbox{ padding-bottom: 3.2em;}
+.commentbox{background: #fff; margin: 0 0.6em 0.5em 0.6em; border-radius: 5px;  }
+.put-left{ margin-right: 1em;}
+.first-item{ border-bottom: 1px solid #E1E1E1; padding: 0.4em 0.6em;}
+.find_rightImg img{ width: 0.45em;}
+.orders-footer{ position: fixed; left: 0; bottom: 0; height: 2.8em; width: 100%; overflow: hidden; box-shadow: 0 -2px 3px #E1E1E1; }
+.ddcanel{ background: #fff;}
+.ddsurer{ background:#028bfd url(../common/images/btn-bg.jpg) repeat-y; height: 2.8em;color: #fff; background-size: 100% 100%;}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+
+	<head>
+		<title>绑定运输公司</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="common/css/mui.min.css" rel="stylesheet" />
+		<link href="common/css/fonts/font-awesome.min.css" rel="stylesheet" />
+		<link href="common/css/icon.css" rel="stylesheet" />
+		<link href="common/css/ui-base.css" rel="stylesheet" />
+		<link href="common/css/ui-box.css" rel="stylesheet" />
+		<link href="common/css/ui-color.css" rel="stylesheet" />
+		<link href="common/css/common.css" rel="stylesheet" />
+		<link href="common/css/control.css" rel="stylesheet" />
+		<link href="maincss/adduser.css" rel="stylesheet" />
+
+	</head>
+
+	<body class="bc-text um-vp bc-bg">
+		<div class="ub ub-ac bind_warn">
+			<div class="ub ub-ac bindwarn_img">
+				<img class="ub ub-img umar-r" src="common/images/warn_img.png" />
+			</div>
+			<div class="ub sc-text ft085">请先绑定运输公司！</div>
+		</div>
+		<div class="ub ub-ver first-box">
+			<div class="ub ub-f1 ub-ver first-main">
+				<div class="ub  first-item">
+					<div class="ub ub-ac put-left">
+						营业执照号
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input class="realName userAccount" type="text" placeholder="营业执照号~" />
+					</div>
+				</div>
+				<!--<div class="ub  first-item">
+					<div class="ub ub-ac put-left">
+						密码
+					</div>
+					<div class="ub ub-ac ub-f1 uinput">
+						<input class="realName password" type="password" placeholder="密码~" />
+					</div>
+				</div>-->
+				<!--<div class="ub first-item">
+					<div class="ub ub-ac put-left">
+						绑定类型
+					</div>
+					<div class="ub ub-ac ub-f1">
+						<select class="ub ub-f1" style="margin: 0; padding: 0; line-height: normal; font-size: 1em;">
+							<option value="运输公司">运输公司</option>
+							<option value="调度员">调度员</option>
+							<option value="客户">客户</option>
+						</select>
+					</div>
+					<div class="ub ub-ac find_rightImg">
+						<img src="common/images/icon_grayR.png" />
+					</div>
+				</div>-->
+			</div>
+		</div>
+
+		<div class="ub btn_box">
+			<div class="ub ub-f1 ub-ac ub-pc main_btn sendbtn">
+				确认绑定
+			</div>
+		</div>
+	</body>
+
+</html>
+<script src="common/js/jquery-2.1.4.min.js"></script>
+<script src="common/js/mui.min.js"></script>
+<script src="Fsuperjs/Fsuper.js"></script>
+<script>
+	$(function() {
+
+	});
+	var openId = localStorage.getItem("openid");
+	var unionId = localStorage.getItem("unionId");
+	//验证信息
+	function binddriver() {
+		var furl = '/Wechat/Api/BindingTransportCompany/';
+		var userAccount = $('.userAccount').val();
+		if (userAccount === null || userAccount === '') {
+			mui.toast('请填写营业执照号！');
+			return;
+		}
+		
+		var queryJson = {
+			openId: openId,
+			registerNo: userAccount,
+		}
+		//console.log(queryJson);
+		$.ajax({
+			url: Serverurl + furl,
+			type: "POST",
+			async: false,
+			dataType: "json",
+			data: queryJson,
+			success: function(result) {
+				if (result.type == 1) {
+					mui.alert(result.message, '系统提示', function() {
+						history.back(-1);
+					});
+				} else {
+					mui.toast(result.message);
+				}
+			}
+
+		});
+	}
+	$('.sendbtn').on('click', function() {
+		binddriver();
+	})
+</script>
